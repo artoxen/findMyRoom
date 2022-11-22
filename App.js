@@ -159,6 +159,7 @@ const Navigation = () => {
 };
 
 export default function App() {
+
   return (
     <Provider>
       <PaperProvider theme={theme}>

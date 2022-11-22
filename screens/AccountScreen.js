@@ -10,6 +10,7 @@ import { Card, Paragraph } from "react-native-paper";
 import { auth } from "../firebase";
 import { COLORS, SIZES } from "../constants";
 import { store, storage } from "../firebase";
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const storageRef = storage.ref();
 
@@ -62,18 +63,21 @@ const AccountScreen = () => {
     return (
       <Card style={styles.card}>
         <Card.Title title={item.LandMrk} />
-        <TouchableOpacity
-          onPress={() => deleteAd(item.id, item.imageNames)}
-          style={styles.delButton}>
-          <Text style={styles.buttonText}>Delete Ad</Text>
-        </TouchableOpacity>
-        <Card.Content>
+        {/* <Card.Content>
           <Paragraph>Ad_Id : {item.id}</Paragraph>
-        </Card.Content>
+        </Card.Content> */}
         <Card.Cover
           style={{ borderRadius: 10, overflow: "hidden" }}
           source={{ uri: item.urls[0] }}
         />
+        <TouchableOpacity
+          onPress={() => deleteAd(item.id, item.imageNames)}
+          style={styles.delButton}>
+
+          <Text>
+              <Icon name="trash" size={30} color="black" />
+          </Text>
+        </TouchableOpacity>
       </Card>
     );
   };
@@ -94,7 +98,7 @@ const AccountScreen = () => {
         refreshing={loading}
         ListHeaderComponent={
           <View style={styles.flatListHeaderStyle}>
-            <Text style={styles.emailId}>{auth.currentUser.email}</Text>
+            <Text style={styles.emailId}>Logged in as: {auth.currentUser.email}</Text>
             <TouchableOpacity
               style={styles.button}
               onPress={() => auth.signOut()}
@@ -124,7 +128,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#DDE2E5",
   },
   emailId: {
-    color: "skyblue",
+    color: "#ffffff",
     textAlign: "center",
     paddingBottom: 14,
   },
@@ -143,7 +147,7 @@ const styles = StyleSheet.create({
   },
   button: {
     margin: 6,
-    backgroundColor: "#054367",
+    backgroundColor: "#ffffff",
     paddingHorizontal: 15,
     paddingVertical: 5,
     borderRadius: 25,
@@ -151,14 +155,14 @@ const styles = StyleSheet.create({
   },
   delButton: {
     margin: 6,
-    backgroundColor: "red",
+    backgroundColor: "white",
     paddingHorizontal: 25,
-    paddingVertical: 7,
+    paddingVertical: 0,
     borderRadius: 25,
     alignSelf: "center",
   },
   buttonText: {
-    color: "#ffffff",
+    color: "#000",
   },
 });
 
