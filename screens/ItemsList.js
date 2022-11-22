@@ -139,7 +139,7 @@ const ItemsList = ({ navigation }) => {
         <Card.Content>
           <Paragraph style={{ textAlign: "left", fontWeight: "bold" }}>Rs {item.price}/-</Paragraph>
           <Paragraph style={{ paddingBottom: 5 }}>
-            Hostel is just <Text style = {{fontWeight: "bold"}}>{geolib.getDistance(item.pin, coordinates) / 1000}{" "} km</Text>
+            Hostel is just <Text style = {{fontWeight: "bold"}}>{geolib.getDistance(item.pin, coordinates) / 1000}{" "}km</Text>
             {" "}away from you
           </Paragraph>
           {/* <Paragraph>{item.desc}</Paragraph> */}

@@ -50,6 +50,8 @@ const SignupScreen = ({ navigation }) => {
       const result = await auth.createUserWithEmailAndPassword(email, password);
       console.log("User is Registered");
       console.log(result.user.email);
+      auth.signOut();
+      Alert.alert("Account Created")
     } catch (err) {
       Alert.alert("Something went wrong try again.");
     }

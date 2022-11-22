@@ -96,17 +96,18 @@ const CreateAd = ({ navigation }) => {
       quality: 0.6,  // decreasing quality of image to 60% for fast loading.
     });
 
-    var target = [];
-    if(!result.hasOwnProperty("selected")) {
-      target = [result];
+    if(!result.hasOwnProperty("selected")){
+        const newImage = result;
+        newImage["id"] = Math.random();
+        setImages((prevState) => [...prevState, newImage]);
+        console.log(images.length);
     } else {
-      target = result.selected;
-    }
-
-    for (let i = 0; i < target.length; i++) {
-      const newImage = target[i];
-      newImage["id"] = Math.random();
-      setImages((prevState) => [...prevState, newImage]);
+      for (let i = 0; i < result.selected.length; i++) {
+          const newImage = result.selected[i];
+          newImage["id"] = Math.random();
+          setImages((prevState) => [...prevState, newImage]);
+          console.log(images.length);
+      }
     }
   };
 
@@ -114,7 +115,7 @@ const CreateAd = ({ navigation }) => {
     let cnt = 1;
     setLoading(true);
     images.map(async (image) => {
-
+      console.log(image.uri);
       const response = await fetch(image.uri)
       const blob = await response.blob();
       const filename = Date.now();
@@ -288,6 +289,7 @@ else
               style={styles.button}
               icon="camera"
               mode="contained"
+              disabled={!images.length}
               onPress={() => uplaodImages()}
             >
               upload Images
